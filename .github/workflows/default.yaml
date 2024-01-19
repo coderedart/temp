@@ -1,14 +1,31 @@
 on: push
   
 name: CI
-env:
-  CARGO_INCREMENTAL: 0
 jobs:
   build:
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
         os: [ubuntu, windows, macos]
+        is_official_build: [true, false]
+        is_component_build: [true, false]
+        arch: [amd]
+        target_os: [self]
+        include:
+          - os: ubuntu
+            arch: arm
+          - os: macos
+            arch: arm
+          - os: ubuntu
+            target_os: android
+          - os: macos
+            target_os: ios
+    env:
+      os: ${{ matrix.os }}
+      is_official_build: ${{ matrix.is_official_build}}
+      is_component_build: ${{ matrix.is_component_build}}
+      arch: ${{ matrix.arch }}
+      target_os: ${{ matrix.target_os == 'self' && matrix.os || matrix.target_os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
