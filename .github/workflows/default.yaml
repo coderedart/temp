@@ -9,23 +9,24 @@ jobs:
         os: [ubuntu, windows, macos]
         is_official_build: [true, false]
         is_component_build: [true, false]
-        arch: [amd]
-        target_os: [self]
-        include:
+        arch: [x86_64, arm64]
+        target_os: [self, android, ios]
+        exclude:
           - os: ubuntu
-            arch: arm
-          - os: macos
-            arch: arm
-          - os: ubuntu
-            target_os: android
-          - os: macos
             target_os: ios
+          - os: windows
+            target_os: ios
+          - target_os: ios
+            arch: x86_64
+          - target_os: android
+            arch: x86_64
     env:
-      os: ${{ matrix.os }}
-      is_official_build: ${{ matrix.is_official_build}}
-      is_component_build: ${{ matrix.is_component_build}}
-      arch: ${{ matrix.arch }}
-      target_os: ${{ matrix.target_os == 'self' && matrix.os || matrix.target_os }}
+      USE_VULKAN: ${{(matrix.os != 'macos' || matrix.target_os == 'android') && 'skia_use_vulkan=true' || 'skia_use_vulkan=false'}}
+      IS_OFFICIAL_BUILD: is_official_build=${{matrix.is_official_build && 'true' || 'false'}}
+      IS_COMPONENT_BUILD: is_component_build=${{matrix.is_component_build && 'true' || 'false'}}
+      TARGET_OS: ${{matrix.target_os != 'self' && matrix.target_os || ''}}
+      TARGET_TRIPLE: ${{fromJson('{"self":{"ubuntu":{"arm64":"aarch64-unknown-linux-gnu","x86_64":"x86_64-unknown-linux-gnu"},"windows":{"arm64":"aarch64-pc-windows-msvc","x86_64":"x86_64-pc-windows-msvc"},"macos":{"arm64":"aarch64-apple-darwin","x86_64":"x86_64-apple-darwin"}},"android":{"ubuntu":{"arm64":"ubuntu_aarch64-linux-android"},"windows":{"arm64":"windows_aarch64-linux-android"},"macos":{"arm64":"macos_aarch64-linux-android"}},"ios":{"macos":{"arm64":"macos_aarch64-apple-ios"}}}')[matrix.target_os][matrix.os][matrix.arch]}}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
