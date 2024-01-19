@@ -7,10 +7,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu, windows, macos]
+        target_os: [self, android, ios]
+        arch: [x86_64, arm64]
         is_official_build: [true, false]
         is_component_build: [true, false]
-        arch: [x86_64, arm64]
-        target_os: [self, android, ios]
         exclude:
           - os: ubuntu
             target_os: ios
