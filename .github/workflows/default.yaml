@@ -16,6 +16,7 @@ jobs:
       - name: Run
         shell: bash
         run: |
+          printenv
           llvm-objcopy --help
           
 
