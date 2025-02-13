@@ -15,19 +15,12 @@ jobs:
         if: matrix.os == 'ubuntu'
         shell: bash
         run: sudo apt-get install -y llvm
-
-      - name: verify Max
-        if: matrix.os == 'macos'
-        shell: bash
-        run: |
-          brew leaves --installed-on-request
-          echo $(brew --prefix llvm@15)
-          ls $(brew --prefix llvm@15)/**
-
       - name: Run
         shell: bash
-        if: matrix.os != 'macos'
         run: |
+          if [[ "{{ matrix.os }}" == "macos" ]]; then
+              export PATH=$(brew --prefix llvm@15)/bin:$PATH
+          fi
           llvm-strip --version
           
 
