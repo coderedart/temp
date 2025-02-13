@@ -17,7 +17,8 @@ jobs:
       - name: install libtinfo
         if: matrix.os == 'ubuntu'
         shell: bash
-        run: sudo apt install -y libncurses5
+        run: sudo apt-get install -y libncurses5
+
       - name: Run
         shell: bash
         run: |
