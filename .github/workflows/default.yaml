@@ -14,9 +14,13 @@ jobs:
         uses: KyleMayes/install-llvm-action@v2.0.5
         with:
           version: '18'
+      - name: install libtinfo
+        if: matrix.os == 'ubuntu'
+        shell: bash
+        run: sudo apt install -y libncurses5
       - name: Run
         shell: bash
         run: |
-          llvm-strip --help
+          llvm-strip --version
           
 
