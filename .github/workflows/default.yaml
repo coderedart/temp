@@ -11,14 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install LLVM and Clang
-        if: ${{ matrix.os == 'ubuntu' }}
-        run: sudo apt install llvm -y
+        uses: KyleMayes/install-llvm-action@v2.0.5
+        with:
+          version: '18'
       - name: Run
         shell: bash
         run: |
-          printenv
-          which clang
-          ls /usr/bin/llvm*
-          llvm-objcopy --help
+          llvm-strip --help
           
 
