@@ -16,6 +16,6 @@ jobs:
       - name: Run
         shell: bash
         run: |
-          llvm-strip --help
+          llvm-objcopy --help
           
 
