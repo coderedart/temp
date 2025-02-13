@@ -17,6 +17,7 @@ jobs:
         shell: bash
         run: |
           printenv
+          which clang
           llvm-objcopy --help
           
 
