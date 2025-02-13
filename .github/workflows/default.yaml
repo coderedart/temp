@@ -14,14 +14,15 @@ jobs:
       - name: install LLVM
         if: matrix.os == 'ubuntu'
         shell: bash
-        run: sudo apt-get install -y libncurses5 llvm
+        run: sudo apt-get install -y llvm
 
       - name: verify Max
         if: matrix.os == 'macos'
         shell: bash
         run: |
+          brew leaves --installed-on-request
           echo $(brew --prefix llvm@18)
-          ls $(brew --prefix llvm@18)/bin
+          ls $(brew --prefix llvm@18)/**
 
       - name: Run
         shell: bash
