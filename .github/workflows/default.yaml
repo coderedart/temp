@@ -10,17 +10,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install LLVM and Clang
-        uses: KyleMayes/install-llvm-action@v2.0.5
-        with:
-          version: '18'
-      - name: install libtinfo
+
+      - name: install LLVM
         if: matrix.os == 'ubuntu'
         shell: bash
-        run: sudo apt-get install -y libncurses5
+        run: sudo apt-get install -y libncurses5 llvm
+
+      - name: verify Max
+        if: matrix.os == 'macos'
+        shell: bash
+        run: |
+          echo $(brew --prefix llvm@18)
+          ls $(brew --prefix llvm@18)/bin
 
       - name: Run
         shell: bash
+        if: matrix.os != 'macos'
         run: |
           llvm-strip --version
           
