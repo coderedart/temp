@@ -21,8 +21,8 @@ jobs:
         shell: bash
         run: |
           brew leaves --installed-on-request
-          echo $(brew --prefix llvm@18)
-          ls $(brew --prefix llvm@18)/**
+          echo $(brew --prefix llvm@15)
+          ls $(brew --prefix llvm@15)/**
 
       - name: Run
         shell: bash
