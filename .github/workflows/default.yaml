@@ -14,13 +14,28 @@ jobs:
       - name: install LLVM
         if: matrix.os == 'ubuntu'
         shell: bash
-        run: sudo apt-get install -y llvm
+        run: sudo apt-get install -y llvm 7zip
+      - name: Setup LLVM path on mac
+        if: matrix.os == 'macos'
+        shell: bash
+        run: |
+              echo "$(brew --prefix llvm@15)/bin" >> $GITHUB_PATH
       - name: Run
         shell: bash
         run: |
-          if [[ "${RUNNER_OS}" == "macOS" ]]; then
-              export PATH=$(brew --prefix llvm@15)/bin:$PATH
-          fi
+          echo "$PATH"
+          # lets verify all the common tools before we start the gclient sync
           llvm-strip --version
-          
+          tar --help
+          7z --version
+          cut --version
+          grep --version
+          tr --version
+          mv --version
+          rm --version
+          cat --version
+          mkdir --version
+          bash --version
+          git --version
+          python --version
 
