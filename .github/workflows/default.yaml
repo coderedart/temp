@@ -26,16 +26,16 @@ jobs:
           echo "$PATH"
           # lets verify all the common tools before we start the gclient sync
           llvm-strip --version
-          tar --help
-          7z --version
-          cut --version
-          grep --version
-          tr --version
-          mv --version
-          rm --version
-          cat --version
-          mkdir --version
-          bash --version
-          git --version
-          python --version
+          which tar
+          which 7z
+          which cut
+          which grep
+          which tr
+          which mv
+          which rm
+          which cat
+          which mkdir
+          which bash
+          which git
+          which python
 
