@@ -12,13 +12,8 @@ jobs:
         run: |
           which tar
           tar --version  
-          curl -L -O 'https://storage.googleapis.com/flutter_infra_release/flutter/202506d686e317862d81548b8afcae9c9eecaa90/linux-x64/impeller_sdk.zip'
+          curl --fail -L -O 'ttps://github.com/coderedart/flutter/releases/download/a_0.32.0/linux_x64_static_release.zip'
           
-      - name: Use Unzip
-        if: matrix.os == 'ubuntu'
-        run: unzip -l impeller_sdk.zip
-      - name: Use tar
-        if: matrix.os != 'ubuntu'
-        run: tar -tf impeller_sdk.zip
+
       
 
