@@ -19,7 +19,6 @@ jobs:
         if: matrix.os != 'windows'
         run: unzip -l impeller_sdk.zip
       - name: Use tar
-        shell: bash
         if: matrix.os == 'windows'
         run: tar -tf impeller_sdk.zip
       
