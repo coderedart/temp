@@ -9,8 +9,8 @@ jobs:
         os: [ubuntu, windows, macos]
     steps:
       - name: Download Zip
-        shell: bash
         run: |
+          which tar
           tar --version  
           curl -L -O 'https://storage.googleapis.com/flutter_infra_release/flutter/202506d686e317862d81548b8afcae9c9eecaa90/linux-x64/impeller_sdk.zip'
           
