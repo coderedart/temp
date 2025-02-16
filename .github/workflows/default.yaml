@@ -15,11 +15,10 @@ jobs:
           curl -L -O 'https://storage.googleapis.com/flutter_infra_release/flutter/202506d686e317862d81548b8afcae9c9eecaa90/linux-x64/impeller_sdk.zip'
           
       - name: Use Unzip
-        shell: bash
-        if: matrix.os != 'windows'
+        if: matrix.os == 'linux'
         run: unzip -l impeller_sdk.zip
       - name: Use tar
-        if: matrix.os == 'windows'
+        if: matrix.os != 'linux'
         run: tar -tf impeller_sdk.zip
       
 
