@@ -8,34 +8,19 @@ jobs:
       matrix:
         os: [ubuntu, windows, macos]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: install LLVM
-        if: matrix.os == 'ubuntu'
-        shell: bash
-        run: sudo apt-get install -y llvm 7zip
-      - name: Setup LLVM path on mac
-        if: matrix.os == 'macos'
+      - name: Download Zip
         shell: bash
         run: |
-              echo "$(brew --prefix llvm@15)/bin" >> $GITHUB_PATH
-      - name: Run
+          tar --version  
+          curl -L -O 'https://storage.googleapis.com/flutter_infra_release/flutter/202506d686e317862d81548b8afcae9c9eecaa90/linux-x64/impeller_sdk.zip'
+          
+      - name: Use Unzip
         shell: bash
-        run: |
-          echo "$PATH"
-          # lets verify all the common tools before we start the gclient sync
-          llvm-strip --version
-          which tar
-          which 7z
-          which cut
-          which grep
-          which tr
-          which mv
-          which rm
-          which cat
-          which mkdir
-          which bash
-          which git
-          which python
+        if: matrix.os != 'windows'
+        run: unzip -l impeller_sdk.zip
+      - name: Use tar
+        shell: bash
+        if: matrix.os == 'windows'
+        run: tar -tf impeller_sdk.zip
+      
 
