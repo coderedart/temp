@@ -11,10 +11,7 @@ jobs:
       - name: Build Crate
         shell: bash
         run: |
-          ls -lh 
-          pwd
-          sleep 5s
-          cargo build -v
+          ls -lh && pwd && cargo build -v
           
 
       
