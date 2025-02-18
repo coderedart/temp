@@ -8,9 +8,12 @@ jobs:
       matrix:
         os: [ubuntu, windows, macos]
     steps:
-      - name: Download Zip
+      - name: Build Crate
+        shell: bash
         run: |
-          cargo build -vv
+          ls -lh 
+          pwd
+          cargo build -v
           
 
       
