@@ -13,6 +13,7 @@ jobs:
         run: |
           ls -lh 
           pwd
+          sleep 5s
           cargo build -v
           
 
