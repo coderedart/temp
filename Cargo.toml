@@ -1,0 +1,11 @@
+[package]
+name = "temp"
+version = "0.2.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/coderedart/temp"
+readme = "README.md"
+description = "Whatever"
+
+
+[dependencies]

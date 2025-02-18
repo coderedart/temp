@@ -10,9 +10,7 @@ jobs:
     steps:
       - name: Download Zip
         run: |
-          which tar
-          tar --version  
-          curl --fail -L -O 'https://github.com/coderedart/flutter/releases/download/a_0.32.0/linux_x64_static_release.zip'
+          cargo build -vv
           
 
       
