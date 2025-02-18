@@ -8,10 +8,12 @@ jobs:
       matrix:
         os: [ubuntu, windows, macos]
     steps:
-      - name: Build Crate
+      - name: Ls
         shell: bash
-        run: |
-          ls -lh && pwd 
+        run: ls -lh && pwd 
+      - name: Build
+        shell: bash
+        run: cargo build
           
 
       
