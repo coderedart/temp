@@ -14,9 +14,9 @@ jobs:
       - name: Clang
         shell: bash
         run: |
-          clang main.c
-          clang++ -E main.c 
-          ls -lh 
+          cargo install bindgen-cli
+          bindgen --merge-extern-blocks --allowlist-file=".*glfw.*\.h" -o ./bindings.rs ./glfw.h -- 
+          cat bindings.rs
           
           
 
