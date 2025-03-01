@@ -3,24 +3,18 @@ on: push
 name: CI
 jobs:
   build:
-    runs-on: ${{ matrix.os }}-latest
-    strategy:
-      matrix:
-        os: [ubuntu, windows, macos]
+    runs-on: macos-latest
+    # runs-on: ${{ matrix.os }}-latest
+    # strategy:
+    #   matrix:
+    #     os: [ubuntu, windows, macos]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Prepare Vulkan SDK
-        uses: humbletim/setup-vulkan-sdk@v1.2.0
-        with:
-          vulkan-query-version: latest
-          vulkan-components: Vulkan-Headers
-          vulkan-use-cache: true
-      - name: Ls
+      - name: Clang
         shell: bash
         run: |
-          ls -lh $VULKAN_SDK
-          ls -lh $VULKAN_SDK/include/vulkan
+          clang main.c
           
           
 
