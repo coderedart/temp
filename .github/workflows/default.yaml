@@ -21,7 +21,7 @@ jobs:
         run: |
           ls -lh $VULKAN_SDK
           if [ "$RUNNER_OS" == "macOS" ]; then
-            ls -lh $VULKAN_SDK/macOS/include/vulkan
+            ls -lh $VULKAN_SDK/include/vulkan
           fi
           
 
