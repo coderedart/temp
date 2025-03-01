@@ -15,9 +15,9 @@ jobs:
         shell: bash
         run: |
           cargo install bindgen-cli
-          bindgen --merge-extern-blocks --verbose --allowlist-file=".*glfw.*\.h" -o ./bindings.rs ./glfw.h -- 
+          bindgen --verbose-o ./bindings.rs ./simple.h
           cat bindings.rs
-          clang++ -E glfw.h
+          clang++ -E ./simple.h
           
           
 
