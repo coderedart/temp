@@ -14,10 +14,10 @@ jobs:
       - name: Clang
         shell: bash
         run: |
-          ls -lh /Library/Developer/CommandLineTools/SDKs/
+          ls -lh /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/*
           printenv
           curl --proto '=https' --tlsv1.2 -LsSf https://github.com/rust-lang/rust-bindgen/releases/download/v0.71.1/bindgen-cli-installer.sh | sh
-          bindgen --verbose -o ./bindings.rs ./simple.h
+          bindgen --verbose -o ./bindings.rs ./simple.h -- -F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
           cat bindings.rs
           clang++ -E ./simple.h
           
