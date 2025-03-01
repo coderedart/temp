@@ -14,7 +14,9 @@ jobs:
       - name: Clang
         shell: bash
         run: |
-          cargo install bindgen-cli
+          ls -lh /Library/Developer/CommandLineTools/SDKs/
+          printenv
+          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/rust-lang/rust-bindgen/releases/download/v0.71.1/bindgen-cli-installer.sh | sh
           bindgen --verbose -o ./bindings.rs ./simple.h
           cat bindings.rs
           clang++ -E ./simple.h
