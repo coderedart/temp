@@ -15,6 +15,7 @@ jobs:
         shell: bash
         run: |
           clang main.c
+          ls -lh 
           
           
 
