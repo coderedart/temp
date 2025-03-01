@@ -15,7 +15,7 @@ jobs:
         shell: bash
         run: |
           cargo install bindgen-cli
-          bindgen --verbose-o ./bindings.rs ./simple.h
+          bindgen --verbose -o ./bindings.rs ./simple.h
           cat bindings.rs
           clang++ -E ./simple.h
           
