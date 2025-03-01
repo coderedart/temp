@@ -10,12 +10,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Prepare Vulkan SDK
+        uses: humbletim/setup-vulkan-sdk@v1.2.0
+        with:
+          vulkan-query-version: latest
+          vulkan-components: Vulkan-Headers
+          vulkan-use-cache: true
       - name: Ls
         shell: bash
-        run: ls -lh && pwd 
-      - name: Build
-        shell: bash
-        run: cargo build
+        run: |
+          ls -lh $VULKAN_SDK
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            ls -lh $VULKAN_SDK/macOS/include/vulkan
+          fi
           
 
       
